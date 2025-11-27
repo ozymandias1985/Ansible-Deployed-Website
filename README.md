@@ -1,40 +1,48 @@
-Personal Website Deployment with Ansible Automated Static Website Setup 
+# Personal Website Deployment with Ansible
+## Automated Static Website Setup (Beginner Project)
 
-🎯 Project Overview
-This is a beginner-friendly Ansible project that automatically deploys a personal static website on an Ubuntu server. It sets up Nginx, configures firewall rules, deploys your website files, and ensures everything is secure and running.
-Perfect for:
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Ansible](https://img.shields.io/badge/Ansible-2.9+-blue.svg)](https://www.ansible.com/)
 
-Learning Ansible basics with a real-world project
-Automating web server setup
-Hosting portfolio/resume websites
-Understanding infrastructure as code
-Adding to your GitHub portfolio
+---
 
-What This Automates:
+## 🎯 Project Overview
 
-✅ System updates and security patches
-✅ Nginx web server installation and configuration
-✅ Firewall (UFW) setup with proper rules
-✅ Website file deployment
-✅ Basic security hardening
-✅ Service management and health checks
+This is a **beginner-friendly Ansible project** that automatically deploys a personal static website on an Ubuntu server. It sets up Nginx, configures firewall rules, deploys your website files, and ensures everything is secure and running.
 
+**Perfect for:**
+- Learning Ansible basics with a real-world project
+- Automating web server setup
+- Hosting portfolio/resume websites
+- Understanding infrastructure as code
+- Adding to your GitHub portfolio
 
-📋 Prerequisites
-Required:
+**What This Automates:**
+- ✅ System updates and security patches
+- ✅ Nginx web server installation and configuration
+- ✅ Firewall (UFW) setup with proper rules
+- ✅ Website file deployment
+- ✅ Basic security hardening
+- ✅ Service management and health checks
 
-Ubuntu 20.04+ server (VM, cloud instance, or bare metal)
-SSH access to the server with sudo privileges
-Ansible installed on your control machine: sudo apt install ansible -y
-SSH key-based authentication set up
+---
 
-Optional:
+## 📋 Prerequisites
 
-Your own domain name (works with IP address too)
-Basic understanding of web servers (helpful but not required)
+**Required:**
+- Ubuntu 20.04+ server (VM, cloud instance, or bare metal)
+- SSH access to the server with sudo privileges
+- Ansible installed on your control machine: `sudo apt install ansible -y`
+- SSH key-based authentication set up
 
+**Optional:**
+- Your own domain name (works with IP address too)
+- Basic understanding of web servers (helpful but not required)
 
-🚀 Quick Start
+---
+
+## 🚀 Quick Start
+```bash
 # 1. Clone this repository
 git clone https://github.com/yourusername/ansible-website-deploy.git
 cd ansible-website-deploy
@@ -51,7 +59,12 @@ ansible-playbook -i inventory/hosts.ini site.yml
 
 # 5. Visit your website
 # http://your-server-ip
+```
 
+---
+
+## 📁 Project Structure
+```
 ansible-website-deploy/
 ├── README.md                    # Project documentation
 ├── site.yml                     # Main playbook (entry point)
@@ -81,17 +94,27 @@ ansible-website-deploy/
     │   └── style.css
     └── images/
         └── logo.png
+```
 
-📝 Configuration
+---
 
+## 📝 Configuration
+
+### 1. Inventory Setup
+
+Edit `inventory/hosts.ini`:
+```ini
 [webservers]
 web1 ansible_host=192.168.1.100 ansible_user=ubuntu
 
 [webservers:vars]
 ansible_python_interpreter=/usr/bin/python3
+```
 
-2. Variables Configuration
-Edit group_vars/webservers.yml:
+### 2. Variables Configuration
+
+Edit `group_vars/webservers.yml`:
+```yaml
 # Website configuration
 website_domain: example.com
 website_port: 80
@@ -99,99 +122,118 @@ website_root: /var/www/html
 
 # Server settings
 server_admin_email: admin@example.com
+```
 
-3. Add Your Website Content
-Replace the files in website_files/ with your own:
+### 3. Add Your Website Content
 
-index.html - Homepage
-about.html - About page
-css/style.css - Stylesheets
-images/ - Images and media
+Replace the files in `website_files/` with your own:
+- `index.html` - Homepage
+- `about.html` - About page
+- `css/style.css` - Stylesheets
+- `images/` - Images and media
 
+---
 
-🎮 Usage
+## 🎮 Usage
 
-Deploy Website
+### Deploy Website
+```bash
 ansible-playbook -i inventory/hosts.ini site.yml
+```
 
-Deploy to Specific Hosts
+### Deploy to Specific Hosts
+```bash
 ansible-playbook -i inventory/hosts.ini site.yml --limit web1
+```
 
-Check What Will Change (Dry Run)
+### Check What Will Change (Dry Run)
+```bash
 ansible-playbook -i inventory/hosts.ini site.yml --check
+```
 
-Verbose Output for Debugging
+### Verbose Output for Debugging
+```bash
 ansible-playbook -i inventory/hosts.ini site.yml -vvv
+```
 
-Update Only Website Content
+### Update Only Website Content
+```bash
 ansible-playbook -i inventory/hosts.ini site.yml --tags "website"
+```
 
+---
 
-🏷️ Available Tags
+## 🏷️ Available Tags
+
 Run specific parts of the playbook:
 
-common - Basic system setup
-nginx - Nginx installation and config
-website - Website deployment only
-security - Security hardening only
+- `common` - Basic system setup
+- `nginx` - Nginx installation and config
+- `website` - Website deployment only
+- `security` - Security hardening only
 
 Example:
-
+```bash
 ansible-playbook -i inventory/hosts.ini site.yml --tags "website,nginx"
+```
 
-🔧 What Each Role Does
-Common Role
+---
 
-Updates system packages
-Installs essential tools (vim, curl, git, etc.)
-Configures UFW firewall
-Sets up automatic security updates
-Creates necessary user groups
+## 🔧 What Each Role Does
 
-Nginx Role
+### Common Role
+- Updates system packages
+- Installs essential tools (vim, curl, git, etc.)
+- Configures UFW firewall
+- Sets up automatic security updates
+- Creates necessary user groups
 
-Installs Nginx web server
-Configures virtual host from template
-Enables and starts Nginx service
-Sets up log rotation
-Opens necessary firewall ports
+### Nginx Role
+- Installs Nginx web server
+- Configures virtual host from template
+- Enables and starts Nginx service
+- Sets up log rotation
+- Opens necessary firewall ports
 
-Website Role
+### Website Role
+- Copies website files to server
+- Sets correct permissions
+- Validates HTML (optional)
+- Creates backup of previous deployment
+- Restarts Nginx to apply changes
 
-Copies website files to server
-Sets correct permissions
-Validates HTML (optional)
-Creates backup of previous deployment
-Restarts Nginx to apply changes
+---
 
+## 🔒 Security Features
 
-🔒 Security Features
 This playbook includes basic security hardening:
+- UFW firewall enabled (only SSH and HTTP)
+- Automatic security updates configured
+- Nginx running as non-root user
+- Proper file permissions (644 for files, 755 for directories)
+- SSH port configurable (default: 22)
 
-UFW firewall enabled (only SSH and HTTP)
-Automatic security updates configured
-Nginx running as non-root user
-Proper file permissions (644 for files, 755 for directories)
-SSH port configurable (default: 22)
+**Note:** For production, consider adding:
+- SSL/TLS certificates (Let's Encrypt)
+- Fail2ban for brute force protection
+- More restrictive firewall rules
+- Regular backup automation
 
-Note: For production, consider adding:
+---
 
-SSL/TLS certificates (Let's Encrypt)
-Fail2ban for brute force protection
-More restrictive firewall rules
-Regular backup automation
+## 🧪 Testing
 
-
-🧪 Testing
-Test on Local VM
+### Test on Local VM
+```bash
 # Using Vagrant (recommended for testing)
 vagrant init ubuntu/focal64
 vagrant up
 # Update inventory with VM IP (usually 192.168.56.10)
 ansible-playbook -i inventory/hosts.ini site.yml
+```
 
-Verify Deployment
-
+### Verify Deployment
+```bash
 # Check Nginx status
 ansible webservers -i inventory/hosts.ini -m shell -a "systemctl status nginx"
 
@@ -200,95 +242,109 @@ curl http://your-server-ip
 
 # Verify firewall rules
 ansible webservers -i inventory/hosts.ini -m shell -a "ufw status"
+```
 
+---
 
+## 🐛 Troubleshooting
 
-🐛 Troubleshooting
-Connection Issues
+### Connection Issues
+```bash
 # Test connectivity
 ansible webservers -i inventory/hosts.ini -m ping
 
 # Check SSH access manually
 ssh user@your-server-ip
+```
 
-Nginx Not Starting
+### Nginx Not Starting
+```bash
 # Check Nginx configuration
 ansible webservers -i inventory/hosts.ini -m shell -a "nginx -t"
 
 # View Nginx logs
 ansible webservers -i inventory/hosts.ini -m shell -a "tail -n 50 /var/log/nginx/error.log"
+```
 
-Permission Denied
+### Permission Denied
+
 Make sure your user has sudo privileges:
+```bash
 # On the target server
 sudo usermod -aG sudo your-username
+```
 
-🚀 Customization Ideas
+---
 
-Add SSL/TLS:
+## 🚀 Customization Ideas
 
-Integrate Let's Encrypt with certbot
-Update Nginx template for HTTPS
+1. **Add SSL/TLS:**
+   - Integrate Let's Encrypt with certbot
+   - Update Nginx template for HTTPS
 
+2. **Multiple Websites:**
+   - Create additional roles for different sites
+   - Use different virtual host configurations
 
-Multiple Websites:
+3. **Database Support:**
+   - Add MySQL/PostgreSQL role
+   - Deploy database-backed applications
 
-Create additional roles for different sites
-Use different virtual host configurations
+4. **Monitoring:**
+   - Add Prometheus/Grafana roles
+   - Set up log aggregation
 
+5. **CI/CD Integration:**
+   - Trigger playbook from GitHub Actions
+   - Automated deployments on git push
 
-Database Support:
+---
 
-Add MySQL/PostgreSQL role
-Deploy database-backed applications
+## 📚 Learning Resources
 
+### Ansible Documentation
+- [Official Docs](https://docs.ansible.com/)
+- [Best Practices](https://docs.ansible.com/ansible/latest/user_guide/playbooks_best_practices.html)
+- [Module Index](https://docs.ansible.com/ansible/latest/collections/)
 
-Monitoring:
+### Related Topics
+- YAML syntax
+- Jinja2 templating
+- Linux system administration
+- Nginx configuration
 
-Add Prometheus/Grafana roles
-Set up log aggregation
+---
 
+## 🤝 Contributing
 
-CI/CD Integration:
-
-Trigger playbook from GitHub Actions
-Automated deployments on git push
-
-
-
-
-📚 Learning Resources
-Ansible Documentation
-
-Official Docs
-Best Practices
-Module Index
-
-Related Topics
-
-YAML syntax
-Jinja2 templating
-Linux system administration
-Nginx configuration
-
-
-🤝 Contributing
 Contributions are welcome! Feel free to:
+- Report bugs
+- Suggest new features
+- Submit pull requests
+- Improve documentation
 
-Report bugs
-Suggest new features
-Submit pull requests
-Improve documentation
+---
 
+## 📄 License
 
-📄 License
-This project is licensed under the MIT License - see the LICENSE file for details.
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-🙏 Acknowledgments
+---
 
-Built as a learning project for Ansible beginners
-Inspired by real-world infrastructure automation needs
-Thanks to the Ansible community for excellent documentation
+## 🙏 Acknowledgments
 
+- Built as a learning project for Ansible beginners
+- Inspired by real-world infrastructure automation needs
+- Thanks to the Ansible community for excellent documentation
 
-📬 Contact
+---
+
+## 📬 Contact
+
+Gabriel Henderson
+
+Project Link: [https://github.com/ozymandias1985/ansible-website-deploy](https://github.com/yourusername/ansible-website-deploy)
+
+---
+
+**⭐ If this project helped you learn Ansible, please consider giving it a star!**
