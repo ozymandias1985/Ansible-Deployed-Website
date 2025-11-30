@@ -1,0 +1,13 @@
+---
+#Handlers for Nginx role
+- name: Reload Nginx
+  systemd:
+    name: nginx
+    state: reloaded
+    
+
+- name: Restart Nginx
+  ansible.builtin.service:
+    name: nginx
+    state: restarted
+    enabled: yes
