@@ -1,0 +1,28 @@
+---
+#variables for websevers group
+
+
+website_domain: "example.com"
+website_port: 80
+website_root: "/var/www/html"
+website_user: "nginx"
+website_group: "nginx"  
+
+
+
+server_timezone: "America/Chicago"
+
+common_packages:
+  - vim 
+  - curl
+  - wget
+  - git
+  - htop
+  - tree
+  - policycoreutils-python-utils
+
+
+
+nginx_packages:
+    - nginx
+    

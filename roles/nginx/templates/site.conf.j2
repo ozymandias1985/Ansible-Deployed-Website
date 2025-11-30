@@ -1,0 +1,19 @@
+# Nginx configuration for {{ website_domain }}
+# Managed by Ansible
+
+server {
+    listen {{ website_port }} default_server;
+    listen [::]:{{ website_port }} default_server;
+    
+    server_name {{ website_domain }};
+    root {{ website_root }};
+    index index.html index.htm;
+    
+    location / {
+        try_files $uri $uri/ =404;
+    }
+    
+    location ~ /\. {
+        deny all;
+    }
+}

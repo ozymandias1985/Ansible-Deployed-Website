@@ -1,0 +1,65 @@
+--- 
+# Install Nginx and configure basic settings
+
+- name: Install Nginx Packages
+  dnf:
+    name: "{{ nginx_packages }}"
+    state: present
+    update_cache: yes
+  tags: install
+
+
+- name: ENsure Nginx service is enabled
+  systemd:
+    name: nginx
+    enabled: yes
+    state: started
+  tags: service
+
+
+- name: Remove defualt Nginx site
+  file:
+    path: "{{item}}"
+    state: absent
+  loop:
+  - /etc/nginx/nginx.conf.d/default.conf
+  - /usr/share/nginx/html
+  notify: Reload Nginx 
+  tags: config
+
+
+
+- name: Create website root directory
+  file:
+    path: "{{ website_root }}"
+    state: directory
+    owner: "{{ website_user }}"
+    group: "{{ website_group }}"
+    mode: '0755'
+  tags: config
+
+
+- name: Deploy Nginx site configuration
+  template:
+    src: site.conf.j2
+    dest: /etc/nginx/conf.d/{{ website_domain }}.conf
+    owner: root
+    group: root
+    mode: '0644'
+  notify: Reload Nginx
+  tags: config
+
+
+- name: Test Nginx configuration
+  command: nginx -t
+  register: nginx_test
+  changed_when: false
+  tags: config
+
+
+
+- name: Ensure Nginx is started
+  systemd:
+    name: nginx
+    state: started
+  tags: service
