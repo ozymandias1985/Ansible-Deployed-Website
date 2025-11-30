@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ansible Automated Deployment</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-brand">
+                <span class="logo">🚀</span>
+                <span class="brand-name">Ansible Deploy</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#home" class="nav-link active">Home</a></li>
+                <li><a href="#features" class="nav-link">Features</a></li>
+                <li><a href="#about" class="nav-link">About</a></li>
+                <li><a href="https://github.com/yourusername/ansible-website-deploy" target="_blank" class="nav-link btn-github">GitHub</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1 class="hero-title">
+                Infrastructure Automation
+                <span class="gradient-text">Made Simple</span>
+            </h1>
+            <p class="hero-subtitle">
+                Deploy production-ready web servers with a single command using Ansible.
+                Built for Fedora/RHEL systems with proper security hardening.
+            </p>
+            <div class="hero-buttons">
+                <a href="#features" class="btn btn-primary">Explore Features</a>
+                <a href="https://github.com/yourusername/ansible-website-deploy" class="btn btn-secondary" target="_blank">View on GitHub</a>
+            </div>
+        </div>
+        <div class="hero-visual">
+            <div class="terminal">
+                <div class="terminal-header">
+                    <div class="terminal-buttons">
+                        <span class="btn-close"></span>
+                        <span class="btn-minimize"></span>
+                        <span class="btn-maximize"></span>
+                    </div>
+                    <span class="terminal-title">ansible-playbook</span>
+                </div>
+                <div class="terminal-body">
+                    <pre><code>$ ansible-playbook -i inventory/hosts.ini site.yml
+
+PLAY [Deploy Website] **************************
+
+TASK [Install Nginx] ***************************
+ok: [webserver]
+
+TASK [Deploy website files] ********************
+changed: [webserver]
+
+TASK [Configure firewall] **********************
+ok: [webserver]
+
+PLAY RECAP *************************************
+webserver    : ok=12  changed=3  unreachable=0
+
+<span class="success">✓ Deployment complete!</span></code></pre>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="features">
+        <div class="container">
+            <div class="section-header">
+                <h2>What This Automates</h2>
+                <p>Everything you need for a production-ready RHEL/Fedora web server</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🔧</div>
+                    <h3>Automated Setup</h3>
+                    <p>Complete server configuration with a single command. No manual steps required.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🌐</div>
+                    <h3>Nginx Web Server</h3>
+                    <p>Production-ready configuration with optimized settings and best practices.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔒</div>
+                    <h3>Security Hardened</h3>
+                    <p>Firewalld rules, SELinux contexts, and automatic security updates configured.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📦</div>
+                    <h3>Role-Based Organization</h3>
+                    <p>Clean, reusable code structure following Ansible best practices.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔄</div>
+                    <h3>Idempotent Operations</h3>
+                    <p>Run the playbook multiple times safely. Only makes necessary changes.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📚</div>
+                    <h3>Learning Focused</h3>
+                    <p>Clear documentation designed for Ansible beginners working with RHEL systems.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-text">
+                    <h2>About This Project</h2>
+                    <p class="lead">
+                        A beginner-friendly Ansible project demonstrating real-world infrastructure 
+                        automation on Fedora/RHEL systems.
+                    </p>
+                    <p>
+                        This project automates the complete deployment of a web server, from initial 
+                        system setup to final website deployment. It's designed to teach Ansible 
+                        fundamentals while working with enterprise Linux systems (Fedora, RHEL, CentOS).
+                    </p>
+                    
+                    <div class="tech-stack">
+                        <h3>Technologies Used</h3>
+                        <div class="tech-tags">
+                            <span class="tag">Ansible</span>
+                            <span class="tag">Nginx</span>
+                            <span class="tag">Fedora</span>
+                            <span class="tag">firewalld</span>
+                            <span class="tag">SELinux</span>
+                            <span class="tag">dnf</span>
+                        </div>
+                    </div>
+
+                    <div class="learning-points">
+                        <h3>What You'll Learn</h3>
+                        <ul>
+                            <li>✓ Ansible playbook structure and syntax</li>
+                            <li>✓ Role-based organization for reusability</li>
+                            <li>✓ Jinja2 templating for dynamic configs</li>
+                            <li>✓ Firewalld and SELinux on RHEL systems</li>
+                            <li>✓ RPM package management with dnf</li>
+                            <li>✓ Infrastructure as Code principles</li>
+                        </ul>
+                    </div>
+
+                    <a href="https://github.com/yourusername/ansible-website-deploy" class="btn btn-primary" target="_blank">
+                        Get Started on GitHub
+                    </a>
+                </div>
+
+                <div class="about-stats">
+                    <div class="stat-card">
+                        <div class="stat-number">3</div>
+                        <div class="stat-label">Ansible Roles</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">1</div>
+                        <div class="stat-label">Command Deploy</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">100%</div>
+                        <div class="stat-label">Automated</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">RHEL</div>
+                        <div class="stat-label">Enterprise Linux</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Ansible Deploy</h3>
+                    <p>Infrastructure automation for modern web deployments on RHEL-based systems.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#features">Features</a></li>
+                        <li><a href="#about">About</a></li>
+                        <li><a href="https://docs.ansible.com/" target="_blank">Ansible Docs</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Resources</h4>
+                    <ul>
+                        <li><a href="https://github.com/yourusername/ansible-website-deploy" target="_blank">GitHub Repository</a></li>
+                        <li><a href="https://docs.fedoraproject.org/" target="_blank">Fedora Docs</a></li>
+                        <li><a href="https://access.redhat.com/" target="_blank">Red Hat Portal</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Connect</h4>
+                    <ul>
+                        <li><a href="https://github.com/yourusername" target="_blank">GitHub</a></li>
+                        <li><a href="https://twitter.com/yourusername" target="_blank">Twitter</a></li>
+                        <li><a href="https://linkedin.com/in/yourusername" target="_blank">LinkedIn</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Ansible Deploy. Built with ❤️ using Ansible.</p>
+                <p>Licensed under MIT License</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
